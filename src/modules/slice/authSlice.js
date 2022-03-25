@@ -10,12 +10,12 @@ export const authSlice = createSlice({
   },
   reducers: {
     cookieClear: (state) => {
-      state.error = "";
       state.isLoggedIn = false;
+      state.error = "";
     },
     cookieClearSuccess: (state) => {
-      state.error = "";
       state.isLoggedIn = false;
+      state.error = "";
     },
     cookieClearFailure: (state, action) => {
       state.error = action.payload;

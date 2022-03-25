@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const roomSlice = createSlice({
+export const roomListSlice = createSlice({
   name: "roomList",
   initialState: {
     isLoading: false,
@@ -37,6 +37,6 @@ export const roomSlice = createSlice({
   },
 });
 
-export const roomListSliceActions = roomSlice.actions;
+export const roomListSliceActions = roomListSlice.actions;
 
-export default roomSlice;
+export default roomListSlice;

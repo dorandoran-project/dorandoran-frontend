@@ -24,6 +24,7 @@ describe("<Profile/>", () => {
       <Profile left={left} top={top} type={type} text={text} />
     );
     const profileEl = getByTestId("profile");
+
     expect(profileEl).toBeInTheDocument();
   });
 
@@ -32,6 +33,7 @@ describe("<Profile/>", () => {
       <Profile left={left} top={top} type={type} text={text} />
     );
     const image = getByAltText("카카오톡 프로필 이미지");
+
     expect(image).toHaveAttribute("src", type);
   });
 });

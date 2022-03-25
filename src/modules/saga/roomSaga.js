@@ -8,6 +8,7 @@ import { roomSliceActions } from "../slice/roomSlice";
 const joinUserSaga = function* ({ payload }) {
   try {
     const { currentRoom, currentUser } = payload;
+
     const response = yield call(() =>
       axios.post(
         process.env.REACT_APP_SERVER_URI + constants.REQUEST_ROOM_JOIN,

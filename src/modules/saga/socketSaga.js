@@ -54,7 +54,7 @@ export const watchSocketCharacterSaga = function* () {
   }
 };
 
-const createSocketVideoChannel = (socketVideo) => {
+export const createSocketVideoChannel = (socketVideo) => {
   return eventChannel((emit) => {
     socketVideo.on("receiveEvent", (payload) => {
       emit(videoSliceActions.receiveEvent(payload));
