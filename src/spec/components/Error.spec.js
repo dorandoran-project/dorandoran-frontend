@@ -22,6 +22,7 @@ describe("<Error/>", () => {
     useSelectorMock.mockClear();
     useDispatchMock.mockClear();
   });
+
   afterEach(() => {
     jest.resetAllMocks();
     cleanup();
@@ -39,7 +40,9 @@ describe("<Error/>", () => {
     const clickHandler = jest.fn(() => {
       history.push(constants.ROUTE_MAIN);
     });
+
     useDispatchMock.mockReturnValue(dummyDispatch);
+
     const { getByText } = render(
       <Router history={history}>
         <Error />
@@ -51,6 +54,7 @@ describe("<Error/>", () => {
     act(() => {
       userEvent.click(getByText("메인 페이지로"));
     });
+
     expect(clickHandler).toHaveBeenCalled();
     expect(history.location.pathname).toBe(constants.ROUTE_MAIN);
   });
