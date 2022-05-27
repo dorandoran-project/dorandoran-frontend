@@ -83,12 +83,7 @@ const Login = () => {
               <p>
                 현재 위치를 알 수 없습니다. <br /> 새로고침 해보시겠어요?
               </p>
-              <RefreshButton onClick={handleReload}>
-                <span className="refreshImage">
-                  <img src={constants.ASSET_REFRESH} alt="새로고침 이미지" />
-                </span>
-                새로고침
-              </RefreshButton>
+              <RefreshButton onClick={handleReload}>새로고침</RefreshButton>
             </LocationErrorWrap>
           )}
 
