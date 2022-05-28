@@ -33,7 +33,7 @@ const Header = ({
         />
         <Title>{title ? title : false}</Title>
       </RoomInfo>
-      <LogoutButton text="로그아웃" onClick={rightOnClick} />
+      <LogoutButton onClick={rightOnClick} />
     </HeaderContainer>
   );
 };
@@ -67,7 +67,7 @@ const RoomInfo = styled.div`
 Header.propTypes = {
   leftOnClick: PropTypes.func.isRequired,
   centerOnClick: PropTypes.func,
-  rightOnClick: PropTypes.func.isRequired,
+  rightOnClick: PropTypes.func,
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   size: PropTypes.string,

@@ -9,7 +9,6 @@ import { useCharacter } from "../../common/hooks/useCharacter";
 import constants from "../../common/utils/constants";
 import createKey from "../../common/utils/createKey";
 import { socketCharacterApi } from "../../modules/api/socketApi";
-import { authSliceActions } from "../../modules/slice/authSlice";
 import { roomListSliceActions } from "../../modules/slice/roomListSlice";
 import { roomSliceActions } from "../../modules/slice/roomSlice";
 import Character from "./Character";
@@ -88,23 +87,6 @@ const Room = () => {
     );
   }, [moveCount, char.side, char.x, char.y, char.isChatting]);
 
-  const handleLogout = () => {
-    window.Kakao.API.request({
-      url: "/v1/user/unlink",
-      success: function () {
-        dispatch(
-          roomSliceActions.deleteUser({
-            currentUser: currentUser._id,
-            currentRoom: params.roomId,
-          })
-        );
-        dispatch(roomSliceActions.init());
-        dispatch(authSliceActions.logoutRequest());
-        socketCharacterApi.exitUser();
-      },
-    });
-  };
-
   const handleRoomsPage = () => {
     dispatch(
       roomSliceActions.deleteUser({
@@ -165,7 +147,6 @@ const Room = () => {
     <>
       <Main>
         <Header
-          rightOnClick={handleLogout}
           title={roomInfo ? roomInfo.title : false}
           text="방 리스트로 가기"
           leftOnClick={handleRoomsPage}

@@ -12,6 +12,7 @@ const Logout = styled.button`
   border-radius: 0;
   border-bottom: 2px solid var(--black-color);
   background: url("/assets/logout.svg") no-repeat 0% 45%;
+  visibility: ${(props) => (props.onClick ? "visible" : "hidden")};
   font-size: 20px;
   text-align: right;
   font-weight: bold;
@@ -25,7 +26,7 @@ const Logout = styled.button`
 `;
 
 LogoutButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default LogoutButton;
