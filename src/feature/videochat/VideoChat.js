@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
@@ -13,8 +13,6 @@ import {
   socketVideoApi,
   socketCharacterApi,
 } from "../../modules/api/socketApi";
-import { authSliceActions } from "../../modules/slice/authSlice";
-import { roomSliceActions } from "../../modules/slice/roomSlice";
 import Video from "./Video";
 
 const VideoChat = () => {
@@ -23,7 +21,6 @@ const VideoChat = () => {
   const currentUser = useSelector((state) => state.auth.user);
   const roomInfo = useSelector((state) => state.room.info);
   const event = useSelector((state) => state.video.event);
-  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
   const params = useParams();
@@ -81,26 +78,6 @@ const VideoChat = () => {
     history.push(`/room/${params.roomId}`);
   };
 
-  const handleLogout = () => {
-    stopStreamedVideo(myVideo.current);
-    socketCharacterApi.exitChattingRoom(getPositionParams);
-
-    window.Kakao.API.request({
-      url: "/v1/user/unlink",
-      success: function () {
-        dispatch(
-          roomSliceActions.deleteUser({
-            currentUser: currentUser._id,
-            currentRoom: params.roomId,
-          })
-        );
-        dispatch(roomSliceActions.init());
-        dispatch(authSliceActions.logoutRequest());
-        socketCharacterApi.exitUser();
-      },
-    });
-  };
-
   const stopStreamedVideo = (videoEl) => {
     const stream = videoEl.srcObject;
     const tracks = stream.getTracks();
@@ -133,7 +110,6 @@ const VideoChat = () => {
       <VideoChatContainer>
         <Header
           leftOnClick={handleRoomPage}
-          rightOnClick={handleLogout}
           text="방 으로 가기"
           title={roomInfo ? roomInfo.title : false}
         />
